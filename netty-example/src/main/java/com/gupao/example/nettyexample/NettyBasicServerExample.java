@@ -1,14 +1,10 @@
 package com.gupao.example.nettyexample;
 
-import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
-import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.ServerSocketChannel;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
  * 咕泡学院，只为更好的你
@@ -42,7 +38,7 @@ public class NettyBasicServerExample {
                         //消息处理
                         ch.pipeline()
                                 .addLast("h1",new NormalMessageHandler())
-                        .addLast("h2",new ChannelInboundHandlerAdapter(){
+                                .addLast("h2",new ChannelInboundHandlerAdapter(){
                             @Override
                             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                 System.out.println("收到消息------------第二处理器");

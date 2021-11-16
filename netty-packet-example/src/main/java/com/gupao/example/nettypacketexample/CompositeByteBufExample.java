@@ -14,16 +14,19 @@ public class CompositeByteBufExample {
         header.writeBytes(new byte[]{1,2,3,4,5});
         ByteBuf body=ByteBufAllocator.DEFAULT.buffer();
         body.writeBytes(new byte[]{6,7,8,9,10});
-/*        ByteBuf total= Unpooled.buffer(header.readableBytes()+body.readableBytes());
+
+        ByteBuf total= Unpooled.buffer(header.readableBytes()+body.readableBytes());
         total.writeBytes(header);
-        total.writeBytes(body);*/
+        total.writeBytes(body);
         //从逻辑成面构建了一个总的buf数据。
         //第二个零拷贝实现
-       /* CompositeByteBuf compositeByteBuf=Unpooled.compositeBuffer();
+        CompositeByteBuf compositeByteBuf=Unpooled.compositeBuffer();
         compositeByteBuf.addComponents(true,header,body);
-        log(compositeByteBuf);*/
+        log(compositeByteBuf);
+
+
         //Unpooled
-        ByteBuf total=Unpooled.wrappedBuffer(header,body);
+//        ByteBuf total=Unpooled.wrappedBuffer(header,body);
         log(total);
         header.setByte(2,9);
         log(total);
